@@ -57,16 +57,8 @@ class LearnedKanjis extends Component {
             break;
         }
   
-        for (var i = 0; i < this.state.learnedKanjis[status].length; i++) {
-          var id = this.state.learnedKanjis[status][i].data.subject_id;
-          var characterData = this.state.allKanjis.find(kanjiData => kanjiData.id == id);
-          if (characterData != undefined) {
-            var character = characterData.data.characters;
-            kanjisElements.push(<div class="item"><span class={srsClass}>{character}</span></div>);
-          }
-        }
         kanjisSections.push(
-          <LearnedKanjisSection srsClass={srsClass} status={status} kanjisElements={kanjisElements} />
+          <LearnedKanjisSection srsClass={srsClass} status={status} kanjis={this.state.learnedKanjis[status]} />
         );
       }
 
