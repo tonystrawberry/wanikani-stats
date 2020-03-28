@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import Loading from './Loading';
 import '../styles/LearnedKanjis.css';
 import { getKanjis } from '../actions/actions'
 import { connect } from 'react-redux';
+import LearnedKanjisSection from './LearnedKanjisSection';
+import Loading from './Loading';
 
 class LearnedKanjis extends Component {
 
@@ -10,7 +11,7 @@ class LearnedKanjis extends Component {
     super();
     this.state = {
       allKanjis: [],
-      learnedKanjis: []
+      learnedKanjis: {}
     }
   }
 
@@ -28,14 +29,12 @@ class LearnedKanjis extends Component {
   }
 
   render() {
-    var kanjisElements = [];
-    if (this.state.learnedKanjis != undefined & this.state.learnedKanjis.length > 0) {
-      for (var i = 0; i < this.state.learnedKanjis.length; i++) {
-        var id = this.state.learnedKanjis[i].data.subject_id;
-        var srsStatus = this.state.learnedKanjis[i].data.srs_stage_name;
-        var characterData = this.state.allKanjis.find(kanjiData => kanjiData.id == id);
+    var kanjisSections = [];
+    if (this.state.learnedKanjis != undefined & Object.keys(this.state.learnedKanjis).length > 0) {
+      for (var status in this.state.learnedKanjis){
+        var kanjisElements = [];
         var srsClass = "";
-        switch (srsStatus) {
+        switch (status) {
           case "Initiate":
           case "Apprentice I":
           case "Apprentice II":
@@ -56,23 +55,25 @@ class LearnedKanjis extends Component {
           case "Burned":
             srsClass = "-burned";
             break;
-
-
         }
-
-        if (characterData != undefined) {
-          var character = characterData.data.characters;
-          kanjisElements.push(<div class="item"><span class={srsClass}>{character}</span></div>)
+  
+        for (var i = 0; i < this.state.learnedKanjis[status].length; i++) {
+          var id = this.state.learnedKanjis[status][i].data.subject_id;
+          var characterData = this.state.allKanjis.find(kanjiData => kanjiData.id == id);
+          if (characterData != undefined) {
+            var character = characterData.data.characters;
+            kanjisElements.push(<div class="item"><span class={srsClass}>{character}</span></div>);
+          }
         }
-
+        kanjisSections.push(
+          <LearnedKanjisSection srsClass={srsClass} status={status} kanjisElements={kanjisElements} />
+        );
       }
 
       return (
         <div className='section' id='learnedKanjis'>
           <h2>Learned Kanjis</h2>
-          <div className="wrapper">
-            {kanjisElements}
-          </div>
+          {kanjisSections}
         </div>
       )
     } else {
@@ -83,7 +84,6 @@ class LearnedKanjis extends Component {
         </div>
       )
     }
-
   }
 }
 

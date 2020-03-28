@@ -3,7 +3,16 @@
   grid-gap: 7px;
   grid-template-columns: repeat(14, 1fr); /* create 18 columns, make them all 1 fraction or 18/100 in width. */
   max-width: 600px;
+  max-height:10000px;
   margin:1em auto;
+  transition: all 1s ease-out;
+}
+
+.wrapper.-hidden{
+  overflow: hidden;
+  visibility: hidden;
+  opacity: 0;
+  max-height: 0px;
 }
 
 .wrapper .item{
@@ -19,23 +28,23 @@
   border-radius: 7px;
 }
 
-.-apprentice{
+.wrapper .item span.-apprentice{
   background-image: linear-gradient(-45deg, #f0a, #dd0093);
 }
 
-.-guru{
+.wrapper .item span.-guru{
   background-image: linear-gradient(-45deg, #aa38c6, #882d9e);
 }
 
-.-master{
+.wrapper .item span.-master{
   background-image: linear-gradient(-45deg, #5571e2, #294ddb);
 }
 
-.-enlightened{
+.wrapper .item span.-enlightened{
   background-image: linear-gradient(-45deg, #0af, #0093dd);
 }
 
-.-burned{
+.wrapper .item span.-burned{
   background-image: linear-gradient(-45deg, #555, #434343);
 }
 
@@ -45,3 +54,47 @@
     grid-template-columns: repeat(8, 1fr);
   }
 }
+
+#learnedKanjis > .-section {
+  position: relative;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+#learnedKanjis > .-section > h3{
+  padding: 10px 0px;
+  border-bottom: 2px solid;
+}
+
+#learnedKanjis > .-section > h3.-apprentice{
+  color: #dd0093;
+  border-bottom-color: #dd0093;
+}
+
+#learnedKanjis > .-section > h3.-guru{
+  color: #882d9e;
+  border-bottom-color: #882d9e;
+}
+
+#learnedKanjis > .-section > h3.-master{
+  color: #294ddb;
+  border-bottom-color: #294ddb;
+}
+
+#learnedKanjis > .-section > h3.-enlightened{
+  color: #0093dd;
+  border-bottom-color: #0093dd;
+}
+
+#learnedKanjis > .-section > h3.-burned{
+  color: #434343;
+  border-bottom-color: #434343;
+}
+
+#learnedKanjis .-toggle{
+  cursor: pointer;
+  position: absolute;
+  top: 15px;
+  right: 10px;
+}
+
