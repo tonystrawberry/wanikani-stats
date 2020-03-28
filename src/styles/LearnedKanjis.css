@@ -55,7 +55,6 @@
   Line breaks are ignored.
   The text content is not wrapped and remains on a single line. */
   white-space: nowrap;
-
   top: 30px;
   position: absolute;
   visibility: hidden;
@@ -118,6 +117,17 @@
   .wrapper {
     grid-gap: 7px;
     grid-template-columns: repeat(8, 1fr);
+  }
+
+  .wrapper .item{
+    position: static;
+  }
+
+  .wrapper .item .detailsBox{
+    position: fixed;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
   }
 }
 
