@@ -42,7 +42,7 @@ export default class BarGraph extends Component {
         },
         responsive: true,
         maintainAspectRatio: false,
-        aspectRatio: 1,
+        aspectRatio:1,
         scales: {
           xAxes: [{
             scaleLabel: {
@@ -64,7 +64,7 @@ export default class BarGraph extends Component {
 
   render() {
     return (
-      <div>
+      <div className="barGraph-container">
         <canvas
           id="myChart"
           ref={this.chartRef}

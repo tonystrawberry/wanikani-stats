@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
+import '../styles/LearnedProgressions.css';
 import PropTypes from 'prop-types'
 import BarGraph from './BarGraph';
 import Loading from './Loading';
@@ -17,14 +18,10 @@ class LevelProgressions extends Component {
   }
 
   componentDidMount(){
-    console.log("getLevelProgressions2")
-    var levelProgressions = this.props.getLevelProgressions();
-    console.log("levelProgressions", levelProgressions)
+    this.props.getLevelProgressions();
   }
 
   componentWillReceiveProps(nextProps){
-    console.log("componentWillReceiveProps")
-    console.log(nextProps)
     if(nextProps.levelProgressions){
       this.setState({
         levelProgressions: nextProps.levelProgressions
@@ -97,14 +94,12 @@ class LevelProgressions extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log("state", state);
   return {
     levelProgressions: state.levelProgressions.data
   }
 };
 
 function mapDispatchToProps(dispatch) {
-  console.log("mapDispatchToProps")
   return {
     getLevelProgressions(){
       dispatch(getLevelProgressions())
