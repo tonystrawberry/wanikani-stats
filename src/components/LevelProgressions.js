@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import '../styles/LearnedProgressions.css';
+import '../styles/LearnedProgressions.scss';
 import BarGraph from './BarGraph';
 import Loading from './Loading';
 import { getLevelProgressions } from '../actions/actions'

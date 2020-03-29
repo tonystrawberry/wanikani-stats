@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../styles/LearnedKanjis.css';
+import '../styles/LearnedKanjis.scss';
 import { getKanjis } from '../actions/actions'
 import { connect } from 'react-redux';
 import LearnedKanjisSection from './LearnedKanjisSection';

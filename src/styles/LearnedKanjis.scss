@@ -1,0 +1,141 @@
+.wrapper {
+	display: grid;
+	grid-gap: 7px;
+	grid-template-columns: repeat(14, 1fr);
+	max-width: 600px;
+	max-height: 10000px;
+	margin: 1em auto;
+	transition: all 1s ease-out;
+	.item {
+		position: relative;
+		height: 27px;
+		>span {
+			padding: 3px 6px;
+			color: white;
+			font-weight: 600;
+			border-radius: 7px;
+		}
+		span.-apprentice {
+			background-image: linear-gradient(-45deg, #f0a, #dd0093);
+		}
+		span.-guru {
+			background-image: linear-gradient(-45deg, #aa38c6, #882d9e);
+		}
+		span.-master {
+			background-image: linear-gradient(-45deg, #5571e2, #294ddb);
+		}
+		span.-enlightened {
+			background-image: linear-gradient(-45deg, #0af, #0093dd);
+		}
+		span.-burned {
+			background-image: linear-gradient(-45deg, #555, #434343);
+		}
+		.detailsBox {
+			white-space: nowrap;
+			top: 30px;
+			position: absolute;
+			visibility: hidden;
+			color: #fff;
+			border: 2px solid white;
+			padding: 10px 10px;
+			border-radius: 5px;
+			z-index: 1;
+			.kanjiMain {
+				padding: 0 10px 0 0;
+				border-right: 1px solid white;
+				display: inline-block;
+				vertical-align: middle;
+			}
+			.kanjiBig {
+				font-weight: 600;
+				font-size: 50px;
+			}
+			.kanjiDetails {
+				padding: 0 0 0 10px;
+				display: inline-block;
+				vertical-align: middle;
+				span {
+					padding: 0px 5px;
+				}
+			}
+		}
+		&:hover {
+			.detailsBox {
+				visibility: visible;
+			}
+		}
+		.detailsBox.-apprentice {
+			background-image: linear-gradient(-45deg, #f0a, #dd0093);
+		}
+		.detailsBox.-guru {
+			background-image: linear-gradient(-45deg, #aa38c6, #882d9e);
+		}
+		.detailsBox.-master {
+			background-image: linear-gradient(-45deg, #5571e2, #294ddb);
+		}
+		.detailsBox.-enlightened {
+			background-image: linear-gradient(-45deg, #0af, #0093dd);
+		}
+		.detailsBox.-burned {
+			background-image: linear-gradient(-45deg, #555, #434343);
+		}
+	}
+}
+.wrapper.-hidden {
+	overflow: hidden;
+	visibility: hidden;
+	opacity: 0;
+	max-height: 0px;
+}
+#learnedKanjis {
+	>.-section {
+		position: relative;
+		max-width: 600px;
+		margin: 0 auto;
+		>h3 {
+			padding: 10px 0px;
+			border-bottom: 2px solid;
+		}
+		>h3.-apprentice {
+			color: #dd0093;
+			border-bottom-color: #dd0093;
+		}
+		>h3.-guru {
+			color: #882d9e;
+			border-bottom-color: #882d9e;
+		}
+		>h3.-master {
+			color: #294ddb;
+			border-bottom-color: #294ddb;
+		}
+		>h3.-enlightened {
+			color: #0093dd;
+			border-bottom-color: #0093dd;
+		}
+		>h3.-burned {
+			color: #434343;
+			border-bottom-color: #434343;
+		}
+	}
+	.-toggle {
+		cursor: pointer;
+		position: absolute;
+		top: 15px;
+		right: 10px;
+	}
+}
+@media only screen and (max-width: 600px) {
+	.wrapper {
+		grid-gap: 7px;
+		grid-template-columns: repeat(8, 1fr);
+		.item {
+			position: static;
+			.detailsBox {
+				position: fixed;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+			}
+		}
+	}
+}

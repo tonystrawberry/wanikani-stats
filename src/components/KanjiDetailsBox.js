@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../styles/LearnedKanjis.css';
+import '../styles/LearnedKanjis.scss';
 
 class KanjiDetailsBox extends Component {
 

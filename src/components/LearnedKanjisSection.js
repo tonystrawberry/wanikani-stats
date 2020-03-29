@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../styles/LearnedKanjis.css';
+import '../styles/LearnedKanjis.scss';
 import { connect } from 'react-redux';
 
 import arrowDown from '../images/arrowDown.png'; // relative path to image 

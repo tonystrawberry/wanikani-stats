@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './styles/App.css';
+import './styles/App.scss';
 import Navbar from './components/Navbar';
 import LevelProgressions from './components/LevelProgressions';
 import LearnedKanjis from './components/LearnedKanjis';
