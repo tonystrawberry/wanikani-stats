@@ -14,20 +14,20 @@ class KanjiDetailsBox extends Component {
     var kanjiDetails = [];
 
     if (onyomi != undefined){
-      kanjiDetails.push(<div><span>On'yomi</span><div style={{'display': "inline-block"}}>{onyomi.reading}</div></div>)
+      kanjiDetails.push(<div key={this.props.kanjiCharacter + '-onyomi'}><span>On'yomi</span><div style={{'display': "inline-block"}}>{onyomi.reading}</div></div>)
     }
 
     if (kunyomi != undefined){
-      kanjiDetails.push(<div><span>Kun'yomi</span><div style={{'display': "inline-block"}}>{kunyomi.reading}</div></div>)
+      kanjiDetails.push(<div key={this.props.kanjiCharacter + '-kunyomi'}><span>Kun'yomi</span><div style={{'display': "inline-block"}}>{kunyomi.reading}</div></div>)
     }
 
     return (
       <div className={`detailsBox ${this.props.srsClass}`}>
-        <div class='kanjiMain'>
-          <span class='kanjiBig'>{this.props.kanjiCharacter}</span>
+        <div className='kanjiMain'>
+          <span className='kanjiBig'>{this.props.kanjiCharacter}</span>
           <div className='kanjiMeaning'>{this.props.meanings[0].meaning}</div>
         </div>
-        <div class='kanjiDetails'>
+        <div className='kanjiDetails'>
           {kanjiDetails}
         </div>
       </div>

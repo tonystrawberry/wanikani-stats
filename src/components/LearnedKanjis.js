@@ -32,7 +32,6 @@ class LearnedKanjis extends Component {
     var kanjisSections = [];
     if (this.state.learnedKanjis != undefined & Object.keys(this.state.learnedKanjis).length > 0) {
       for (var status in this.state.learnedKanjis){
-        var kanjisElements = [];
         var srsClass = "";
         switch (status) {
           case "Initiate":
@@ -58,7 +57,7 @@ class LearnedKanjis extends Component {
         }
   
         kanjisSections.push(
-          <LearnedKanjisSection srsClass={srsClass} status={status} kanjis={this.state.learnedKanjis[status]} />
+          <LearnedKanjisSection key={status} srsClass={srsClass} status={status} kanjis={this.state.learnedKanjis[status]} />
         );
       }
 
@@ -80,7 +79,6 @@ class LearnedKanjis extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log("state", state);
   return {
     allKanjis: state.kanjis.allKanjis,
     learnedKanjis: state.kanjis.learnedKanjis

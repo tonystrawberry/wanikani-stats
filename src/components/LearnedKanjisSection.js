@@ -30,16 +30,16 @@ class LearnedKanjisSections extends Component {
         var meanings = characterData.data.meanings;
         var readings = characterData.data.readings;
         kanjisElements.push(
-          <div class="item">
+          <div key={`kanjis-${this.props.srsClass}-${i}`} className="item">
             <span className={this.props.srsClass}>{character}</span>
             <KanjiDetailsBox srsClass={this.props.srsClass} kanjiCharacter={character} meanings={meanings} readings={readings} />
           </div>);
       }
     }
     return (
-      <div class="-section">
-        <h3 class={this.props.srsClass}>{this.props.status}</h3>
-        <img class="-toggle" width="30" src={arrowDown} onClick={this.toggleVisibility} />
+      <div className="-section">
+        <h3 className={this.props.srsClass}>{this.props.status}</h3>
+        <img className="-toggle" width="30" src={arrowDown} onClick={this.toggleVisibility} />
         <div className={`wrapper ${!this.state.visible ? '-hidden' : ''}`}>
           {kanjisElements}
         </div>
@@ -49,7 +49,6 @@ class LearnedKanjisSections extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log("state", state);
   return {
     allKanjis: state.kanjis.allKanjis
   }

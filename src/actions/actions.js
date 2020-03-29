@@ -1,9 +1,25 @@
 import axios from 'axios'
+import * as devEnvironment from '../env-variables/development'
+import * as prodEnvironment from '../env-variables/production'
 
 // levelProgresssions
 export const GET_LEVEL_PROGRESSIONS_REQUEST = 'GET_LEVEL_PROGRESSIONS_REQUEST'
 export const GET_LEVEL_PROGRESSIONS_SUCCESS = 'GET_LEVEL_PROGRESSIONS_SUCCESS'
 export const GET_LEVEL_PROGRESSIONS_FAILURE = 'GET_LEVEL_PROGRESSIONS_FAILURE'
+
+var environmentVariables = {}
+
+switch(process.env.NODE_ENV) {
+  case 'development': {
+    environmentVariables = devEnvironment
+    break
+  }
+  case 'production': {
+    environmentVariables = prodEnvironment
+    break
+  }
+}
+
 
 export const getLevelProgressionsRequest = () => {
   return {
@@ -29,11 +45,11 @@ export const getLevelProgressions = () => {
   return async (dispatch) => {
     dispatch(getLevelProgressionsRequest())
     try {
-      const res = await axios.get("https://api.wanikani.com/v2/level_progressions", {
-            headers: {
-              'Authorization': 'Bearer 2d2cee0a-1417-48ee-acac-11a70a638e17'
-            }
-          });
+      const res = await axios.get(environmentVariables.SERVER_ENDPOINT + "level_progressions", {
+        headers: {
+          'Authorization': 'Bearer 2d2cee0a-1417-48ee-acac-11a70a638e17'
+        }
+      });
       return dispatch(getLevelProgressionsSuccess(res.data));
     }
     catch (err) {
@@ -72,58 +88,23 @@ export const getKanjis = () => {
     dispatch(getKanjisRequest())
     try {
       var allKanjis = [];
-      var iteration = 0;
-
-      var res = await axios.get("https://api.wanikani.com/v2/subjects?types=kanji", {
-        headers: {
-          'Authorization': 'Bearer 2d2cee0a-1417-48ee-acac-11a70a638e17'
-        }
-      });
-      allKanjis.concat(res.data.data);
-      do {
-        allKanjis = allKanjis.concat(res.data.data);
-        if (res.data.pages.next_url){
-          res = await axios.get(res.data.pages.next_url, {
-            headers: {
-              'Authorization': 'Bearer 2d2cee0a-1417-48ee-acac-11a70a638e17'
-            }
-          });
-  
-          // Prevent infinite loops
-          iteration++;
-          if (iteration == 10){
-            break;
-          }
-        }
-      } while (res.data.pages.next_url != null);
-
-      // Get learnedKanjis
       var learnedKanjis = [];
-      iteration = 0;
 
-      res = await axios.get("https://api.wanikani.com/v2/assignments?subject_types=kanji", {
+      var res = await axios.get(environmentVariables.SERVER_ENDPOINT + "kanjis", {
+        headers: {
+          'Authorization': 'Bearer 2d2cee0a-1417-48ee-acac-11a70a638e17'
+        }
+      });
+      allKanjis = res.data;
+
+      res = await axios.get(environmentVariables.SERVER_ENDPOINT + "learned_kanjis", {
         headers: {
           'Authorization': 'Bearer 2d2cee0a-1417-48ee-acac-11a70a638e17'
         }
       });
 
-      do {
-        learnedKanjis = learnedKanjis.concat(res.data.data);
-        if (res.data.pages.next_url){
-          res = await axios.get(res.data.pages.next_url, {
-            headers: {
-              'Authorization': 'Bearer 2d2cee0a-1417-48ee-acac-11a70a638e17'
-            }
-          });
+      learnedKanjis = res.data;      
 
-          // Prevent infinite loops
-          iteration++;
-          if (iteration == 10){
-            break;
-          }
-        }
-      } while (res.data.pages.next_url != null)
-      console.log("Dispatching...")
       return dispatch(getKanjisSuccess({allKanjis: allKanjis, learnedKanjis: learnedKanjis}));
     }
     catch (err) {

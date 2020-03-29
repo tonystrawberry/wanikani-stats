@@ -17,7 +17,7 @@ const getLevelProgressions = (state = initialState, action) => {
     case GET_LEVEL_PROGRESSIONS_SUCCESS:
       return Object.assign({}, state, {
         isFetchingLevelProgressions: false,
-        data: action.data.data,
+        data: action.data,
       });
     case GET_LEVEL_PROGRESSIONS_FAILURE:
       return Object.assign({}, state, {

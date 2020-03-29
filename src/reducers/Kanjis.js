@@ -55,7 +55,6 @@ const getKanjis = (state = initialState, action) => {
         learnedKanjis: []
       });
     case GET_KANJIS_SUCCESS:
-
       var learnedKanjisByStatus = {};
       for (var i = 0; i < action.data.learnedKanjis.length; i++){
         var srsStatus = action.data.learnedKanjis[i].data.srs_stage_name;

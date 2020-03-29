@@ -1,0 +1,1 @@
+export var SERVER_ENDPOINT='https://wanikanistats-server.herokuapp.com/'
